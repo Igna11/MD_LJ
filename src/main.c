@@ -1,3 +1,4 @@
+/* gcc -Wall -O3 -o DM.exe main.c visualizacion.c interaccion.c general.c avanzar.c -lm*/
 #include "general.h"
 #include "interaccion.h"
 #include "inicializar.h"

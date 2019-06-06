@@ -3,6 +3,7 @@
 
 #include "math.h"
 
-// Declaracion de funciones
+float set_box(float *x, int N, float L);
+float set_v(float *v, int N, float T);
 
 #endif

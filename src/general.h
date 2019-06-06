@@ -5,4 +5,4 @@
 float random();
 float gaussiana(float,float);
 
-#endinf
+#endif

@@ -1,8 +1,8 @@
 #include "general.h"
-
+#include "stdlib.h"
 float random()
 {
-	return ((float)rand) / ((float) RAND_MAX);
+	return ((float)rand()) / ((float) RAND_MAX);
 }
 
 float gaussiana(float mu, float sigma)
@@ -12,8 +12,8 @@ float gaussiana(float mu, float sigma)
 	
 	for(int i = 0; i<n; i++)
 	{
-		z+ = random();
+		z += random();
 	}
-	z = sqrt(12)*(z/n - 0.5};
+	z = sqrt(12)*(z/n - 0.5);
 	return z*sigma+mu;
 }
