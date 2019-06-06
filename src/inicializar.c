@@ -14,8 +14,7 @@ float set_box(float *x; int N; float L)
 	dL = L/n;
 	
 	i = 0;
-	
-	
+		
 	for(x=0; x<n; x++)
 	{
 		for(y=0; y<n; y++)
@@ -38,7 +37,7 @@ float set_v(float *v, int N, float T)
 	float VCM[3] = {0,0,0};
 	int i,k;
 	
-	for(i=0; i<3*N; i++)
+	for(i = 0; i < 3*N; i++)
 	{
 		v[i] = gaussiana(0.0,sigma);
 	}
