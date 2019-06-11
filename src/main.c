@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
-	int N = 100;
+	int N = 125,i;
 	float L = 10, dx = 0.05;
 	float *x = (float *) malloc(3*N*sizeof(float));
 	float *v = (float *) malloc(3*N*sizeof(float));
@@ -29,25 +29,25 @@ int main(int argc, char *argv[]){
 		v[i] = 0;
 	}
 
-	// El formato del filename ".lammpstrj", ese VMD lo lee comodamente
+// El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
-	sprintf(filename, "prueba.lammpstrj");
+	sprintf(filename, "prueba_nyp.lammpstrj");
 	int N_frames = 100;
+	
+	
+	set_box(x, N, L);
+	set_v(v, N, 1);
 
-// Armo un boomerang con un """""movimiento browniano"""""
-	for(int i = 0; i < 3*N; i++)
-	{
-		x[i] = x[i] + L*rand()/RAND_MAX; // Estado inicial random en la caja
-		v[i] = 0.0;
-	}
 	for(int l = 0; l < N_frames; l++)
 	{	
 		for(int i = 0; i < 3*N; i++)
 		{
-			x[i] = x[i] + dx*(2.0*rand()/RAND_MAX-1.0); // Genero perturbacion random
+			x[i] = x[i] + dx*v[i]; // Genero perturbacion random
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
+	
+	
   // Hago la vuelta del boomerang
 	for(int l = 0; l < N_frames; l++)
 	{

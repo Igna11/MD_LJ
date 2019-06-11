@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-float set_box(float *x; int N; float L)
+float set_box(float *x, int N, float L)
 {
 	int n = cbrt(N);
 	int i;
