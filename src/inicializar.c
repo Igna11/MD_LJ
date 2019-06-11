@@ -9,21 +9,21 @@ float set_box(float *x; int N; float L)
 {
 	int n = cbrt(N);
 	int i;
-	float x,y,z,dL;
+	float ix,iy,iz,dL;
 	
 	dL = L/n;
 	
 	i = 0;
 		
-	for(x=0; x<n; x++)
+	for(ix=0; ix<n; ix++)
 	{
-		for(y=0; y<n; y++)
+		for(iy=0; iy<n; iy++)
 		{
-			for(z=0; z<n; z++)
+			for(iz=0; iz<n; iz++)
 			{
-				x[3*i] = dL*(x+0.5);
-				y[3*i+1] = dL*(y+0.5);
-				z[3*i+2] = dL*(z+0.5);
+				x[3*i] = dL*(ix+0.5);
+				x[3*i+1] = dL*(iy+0.5);
+				x[3*i+2] = dL*(iz+0.5);
 				i++;
 			}
 		}
@@ -46,7 +46,7 @@ float set_v(float *v, int N, float T)
 	{
 		for(k=0;k<3; k++)
 		{
-			VCM[k] += V[3*i+k]/N;
+			VCM[k] += v[3*i+k]/N;
 		}
 	}
 	
