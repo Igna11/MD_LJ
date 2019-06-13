@@ -4,5 +4,6 @@
 
 float random();
 float gaussiana(float,float);
+float norma2(float*, float*, int);
 
 #endif

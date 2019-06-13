@@ -21,7 +21,7 @@ float gaussiana(float mu, float sigma)
 float norma2(float* ri, float* rj, int n)
 {
 	int i;
-	float norma;
+	float norma = 0;
 	for(i = 0; i<n; i++)
 	{
 		norma += (ri[i]-rj[i])*(ri[i]-rj[i]);
