@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
 	int N_frames = 100;
 	
 	
-	set_box(x, N, L);
+	set_x(x, N, L);
 	set_v(v, N, 1);
 
 	for(int l = 0; l < N_frames; l++)
