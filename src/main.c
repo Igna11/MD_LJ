@@ -12,15 +12,18 @@
 
 int main(int argc, char *argv[]){
 
-  // Definicion del main
-
-
+	// Definicion del main
+	
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
-	int N = 125,i;
-	float L = 10, dx = 0.05;
+	int N, i;
+	float L = 10, dx = 0.5;
 	float *x = (float *) malloc(3*N*sizeof(float));
 	float *v = (float *) malloc(3*N*sizeof(float));
+
+	printf("\nPasame el numero de particulas ameo\n");
+	scanf("%int", &N);
+
 
 //------------------ REINICIAMOS x y v ----------------------------------------//
 	for(i = 0; i < 3*N; i++)
@@ -40,9 +43,19 @@ int main(int argc, char *argv[]){
 
 	for(int l = 0; l < N_frames; l++)
 	{	
-		for(int i = 0; i < 3*N; i++)
+		for(int i = 0; i < 3*N; i = i + 3)
 		{
-			x[i] = x[i] + dx*v[i]; // Genero perturbacion random
+			x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
+			
+			//Condición periódica de contorno para la posición
+			if(x[i]>L)
+			{
+				x[i] = x[i]-L;
+			}
+			else if(x[i]<0)
+			{
+				x[i] = x[i]+L;
+			}
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}

@@ -5,4 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-// Definicion de funciones
+float fuerzas()
+{
+	
+}

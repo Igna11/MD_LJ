@@ -14,7 +14,7 @@ float gaussiana(float mu, float sigma)
 	{
 		z += random();
 	}
-	z = sqrt(12)*(z/n - 0.5);
+	z = sqrt(12*n)*(z/n - 0.5);
 	return z*sigma+mu;
 }
 
@@ -28,4 +28,18 @@ float norma2(float* ri, float* rj, int n)
 	}
 	norma = pow(norma,0.5);
 	return norma;
+}
+
+float delta_x(float x1, float x2, float L)
+{
+	float delta = x1 - x2;
+	if(delta < -L/2)
+	{
+		delta = delta + L;
+	}
+	else if(delta > L/2)
+	{
+		delta = delta - L;
+	}
+	return delta;
 }

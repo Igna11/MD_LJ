@@ -3,6 +3,6 @@
 
 #include "math.h"
 
-// Declaracion de funciones
+float fuerzas();
 
 #endif
