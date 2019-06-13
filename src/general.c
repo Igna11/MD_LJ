@@ -17,3 +17,15 @@ float gaussiana(float mu, float sigma)
 	z = sqrt(12)*(z/n - 0.5);
 	return z*sigma+mu;
 }
+
+float norma2(float* ri, float* rj, int n)
+{
+	int i;
+	float norma;
+	for(i = 0; i<n; i++)
+	{
+		norma += (ri[i]-rj[i])*(ri[i]-rj[i]);
+	}
+	norma = pow(norma,0.5);
+	return norma;
+}
