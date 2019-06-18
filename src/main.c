@@ -18,18 +18,26 @@ int main(int argc, char *argv[]){
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
 	double L = 10, dx = 0.5;
-	double *x = (double *) malloc(3*N*sizeof(double));
-	double *v = (double *) malloc(3*N*sizeof(double));
-
+	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
+	
+	double *x = (double *) malloc(3*N*sizeof(double));
+	double *v = (double *) malloc(3*N*sizeof(double));
+	double *dx_vector = (double *) malloc(3*sizeof(double));
 
 
 //------------------ REINICIAMOS x y v ----------------------------------------//
 	for(i = 0; i < 3*N; i++)
 	{
-		x[i] = 0;
-		v[i] = 0;
+		x[i] = 0.0;
+		v[i] = 0.0;
+	}
+
+	
+	for(i = 0; i < 3; i++)
+	{
+		dx_vector[i] = 0;
 	}
 
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
@@ -37,9 +45,12 @@ int main(int argc, char *argv[]){
 	sprintf(filename, "prueba_nyp.lammpstrj");
 	int N_frames = 100;
 	
-	
+
 	set_x(x, N, L);
 	set_v(v, N, 1);
+
+
+// Asignacion de velocidades	
 
 	for(int l = 0; l < N_frames; l++)
 	{	
@@ -59,6 +70,8 @@ int main(int argc, char *argv[]){
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
+
+	
 	
 	
   // Hago la vuelta del boomerang

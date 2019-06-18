@@ -32,7 +32,9 @@ double norma2(double* V)
 double delta_x(double* x1, double* x2, double L, double* dx)
 {
 	//Condicion periodica de contorno en los bordes
-	for(int k = 0; k < 3; k++){
+	int k;
+	for(k = 0; k < 3; k++)
+	{
 		dx[k] = x1[k] - x2[k];
 		if(dx[k] < -L/2)
 		{
@@ -42,5 +44,6 @@ double delta_x(double* x1, double* x2, double L, double* dx)
 		{
 			dx[k] = dx[k] - L;
 		}
+	}
 	return 0;
 }
