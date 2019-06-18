@@ -71,6 +71,7 @@ int main(int argc, char *argv[]){
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
 	
+	forces(dx_vector, F_mod, f, x, N, L);
 
 	free(x);
 	free(v);
