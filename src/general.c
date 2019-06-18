@@ -18,29 +18,29 @@ double gaussiana(double mu, double sigma)
 	return z*sigma+mu;
 }
 
-double norma2(double* ri, double* rj, int n)
+double norma2(double* V)
 {
 	int i;
 	double norma = 0;
-	for(i = 0; i<n; i++)
+	for(i = 0; i<3; i++)
 	{
-		norma += (ri[i]-rj[i])*(ri[i]-rj[i]);
+		norma += V[i]*V[i];
 	}
-	norma = pow(norma,0.5);
 	return norma;
 }
 
-double delta_x(double x1, double x2, double L)
+double delta_x(double* x1, double* x2, double L, double* dx)
 {
 	//Condicion periodica de contorno en los bordes
-	double delta = x1 - x2;
-	if(delta < -L/2)
-	{
-		delta = delta + L;
-	}
-	else if(delta > L/2)
-	{
-		delta = delta - L;
-	}
-	return delta;
+	for(int k = 0; k < 3; k++){
+		dx[k] = x1[k] - x2[k];
+		if(dx[k] < -L/2)
+		{
+			dx[k] = dx[k] + L;
+		}
+		else if(dx[k] > L/2)
+		{
+			dx[k] = dx[k] - L;
+		}
+	return 0;
 }
