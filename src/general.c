@@ -32,6 +32,7 @@ double norma2(double* ri, double* rj, int n)
 
 double delta_x(double x1, double x2, double L)
 {
+	//Condicion periodica de contorno en los bordes
 	double delta = x1 - x2;
 	if(delta < -L/2)
 	{
