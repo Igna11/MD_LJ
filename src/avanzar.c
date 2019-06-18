@@ -8,7 +8,7 @@
 
 // Definicion de funciones
 
-float velocity_verlet(double* x, double* v, double* f, double h, double m)
+double velocity_verlet(double* x, double* v, double* f, double h, double m)
 {
 	int i;
 	for(i = 0; i<3*N; i++)
