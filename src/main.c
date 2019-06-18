@@ -70,13 +70,8 @@ int main(int argc, char *argv[]){
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
+	
 
-  // Hago la vuelta del boomerang
-	for(int l = 0; l < N_frames; l++)
-	{
-		load_lammpstrj(filename, x, v, N, &L, N_frames-1-l); // Cargo estado viejo
-		save_lammpstrj(filename, x, v, N, L, N_frames+l);    // Lo guardo (append)
-	}
 	free(x);
 	free(v);
 	free(f);
