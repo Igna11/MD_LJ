@@ -1,7 +1,5 @@
-
-
-// TESTEO FUNCION PAIR_FORCE
-
+double TEST_pair_force(double r2, double* F_mod)
+{
 	FILE* fp;
 	char filename2[64];
 	double V = 0.0, r_2 = 0.0, k = 0.0;
@@ -20,3 +18,4 @@
 		printf("va por la iteracion %lf\n",k);
 	}
 	fclose(fp);
+}
