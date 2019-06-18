@@ -3,6 +3,6 @@
 
 #include "math.h"
 
-float fuerzas();
+double fuerzas();
 
 #endif

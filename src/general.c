@@ -1,14 +1,14 @@
 #include "general.h"
 #include "stdlib.h"
-float random()
+double random()
 {
-	return ((float)rand()) / ((float) RAND_MAX);
+	return ((double)rand()) / ((double) RAND_MAX);
 }
 
-float gaussiana(float mu, float sigma)
+double gaussiana(double mu, double sigma)
 {
 	int n = 10;
-	float z = 0;
+	double z = 0;
 	
 	for(int i = 0; i<n; i++)
 	{
@@ -18,10 +18,10 @@ float gaussiana(float mu, float sigma)
 	return z*sigma+mu;
 }
 
-float norma2(float* ri, float* rj, int n)
+double norma2(double* ri, double* rj, int n)
 {
 	int i;
-	float norma = 0;
+	double norma = 0;
 	for(i = 0; i<n; i++)
 	{
 		norma += (ri[i]-rj[i])*(ri[i]-rj[i]);
@@ -30,9 +30,9 @@ float norma2(float* ri, float* rj, int n)
 	return norma;
 }
 
-float delta_x(float x1, float x2, float L)
+double delta_x(double x1, double x2, double L)
 {
-	float delta = x1 - x2;
+	double delta = x1 - x2;
 	if(delta < -L/2)
 	{
 		delta = delta + L;

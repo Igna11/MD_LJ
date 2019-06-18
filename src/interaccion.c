@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-float fuerzas()
+double fuerzas()
 {
 	
 }

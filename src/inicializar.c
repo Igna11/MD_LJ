@@ -5,11 +5,11 @@
 #include <time.h>
 #include <unistd.h>
 
-float set_x(float *x, int N, float L)
+double set_x(double *x, int N, double L)
 {
 	int n = cbrt(N);
 	int i;
-	float ix,iy,iz,dL;
+	double ix,iy,iz,dL;
 	
 	dL = L/n;
 	
@@ -31,10 +31,10 @@ float set_x(float *x, int N, float L)
 	return dL;
 }
 
-float set_v(float *v, int N, float T)
+double set_v(double *v, int N, double T)
 {
-	float sigma = sqrt(T);
-	float VCM[3] = {0,0,0};
+	double sigma = sqrt(T);
+	double VCM[3] = {0,0,0};
 	int i,k;
 	
 	for(i = 0; i < 3*N; i++)

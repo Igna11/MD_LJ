@@ -17,9 +17,9 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	float L = 10, dx = 0.5;
-	float *x = (float *) malloc(3*N*sizeof(float));
-	float *v = (float *) malloc(3*N*sizeof(float));
+	double L = 10, dx = 0.5;
+	double *x = (double *) malloc(3*N*sizeof(double));
+	double *v = (double *) malloc(3*N*sizeof(double));
 
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
