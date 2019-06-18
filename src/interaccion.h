@@ -3,6 +3,7 @@
 
 #include "math.h"
 
-double fuerzas();
+double pair_force(double r2, double* F_mod);
+double forces(double* dx_vector, double* F_mod, int N);
 
 #endif
