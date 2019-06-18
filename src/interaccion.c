@@ -19,7 +19,7 @@ double pair_force(double r2, double* F_mod)
 double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, double L)
 {
 	int i, j, k;
-	double r2;
+	double r2, V;
 	double rc2 = 2.5*2.5;
 
 	for(i = 0; i < N - 1; i++)
@@ -30,7 +30,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 			delta_x(&x[i], &x[j], L, dx_vector);
 			r2 = norma2(dx_vector);
 			
-			if(r2 < rc2) pair_force(r2, F_mod);
+			if(r2 < rc2) V = pair_force(r2, F_mod);
 			
 			//Calcula la dirección de la fuerza resultante de i con todas las partículas j
 			for(k = 0; k < 3; k++)
@@ -38,6 +38,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 				f[3*i+k] += F_mod[0]*dx_vector[k];
 				f[3*j+k] -= F_mod[0]*dx_vector[k];
 			}
+			F_mod[0] = 0.0;
 		}
 	}
 	return 0;
