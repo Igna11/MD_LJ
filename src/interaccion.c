@@ -8,10 +8,12 @@
 double pair_force(double r2, double* F_mod)
 {
 	double r6 = r2*r2*r2;
+	double V; 
 	
 	//sigma = epsilon = 1
 	F_mod[0] = 24.0*(2.0/r6 - 1.0)/(r6 + r2);
-	return 0;
+	V = 4.0*(1.0/r6)*((1.0/r6)-1);
+	return V;
 }
 
 double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, double L)
