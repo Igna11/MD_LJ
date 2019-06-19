@@ -28,26 +28,46 @@ double TEST_pair_force(double r2, double* F_mod)
 	return 0;
 }
 
-double TEST_forces(double* dx_vector, double* F_mod, double* f, double* x, int N, double L)
+double TEST_forces() // hace el test para dos particulas en y=z=0.
 {	
 	FILE* fp;
 	char filename[64];
-	int i, j, k;
+	int i;
 	
 	sprintf(filename, "FORCES_TEST.txt");
 	fp = fopen(filename, "w ");
 	
-	//quiero setear solo 2 partículas con dos posiciones iniciales fijas y sin velocidades
+	int N = 2;
+	float L = 10;
+	double *x = (double *) malloc(3*N*sizeof(double));
+	double *f = (double *) malloc(3*N*sizeof(double));
+	double *dx_vector = (double *) malloc(3*sizeof(double));
+	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
 	
+	for(i = 0; i < 3*N; i++)
+	{
+		x[i] = 0.0;
+		f[i] = 0.0;
+	}
+
+	for(i = 0; i < 3; i++)
+	{
+		dx_vector[i] = 0;
+	}
+	F_mod[0] = 0.0;
+	
+	
+	//quiero setear solo 2 partículas con dos posiciones iniciales fijas y sin velocidades
 	x[0] = 0.1*L;/*eje x en el 10% de L*/
 	x[3] = 0.9*L;/*eje x en el 90% de L*/
-	x[1] = x[2] = x[4] = x[5] = 0.5*L; /*eje y z ambas partículas alineadas en la mitad de L*/
+	x[1] = x[2] = x[4] = x[5] = 0; /*eje y z ambas partículas alineadas en la mitad de L*/
 	
 	forces(dx_vector, F_mod, f, x, N, L);
-	for(i = 0; i < N; i++)
+	
+	for(i = 0; i < 3*N; i = i+3)
 	{	
 		printf("%i\n", i);
-		fprintf(fp, "%lf\n", f[i]);
+		fprintf(fp, "%lf\t%lf\t%lf\n", f[i],f[i+1],f[i+2]);
 	}
 	
 	fclose(fp);

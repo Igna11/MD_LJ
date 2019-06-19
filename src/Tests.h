@@ -7,6 +7,6 @@
 //declaracion de funciones
 
 double TEST_pair_force(double r2, double* F_mod);
-double TEST_forces(double* dx_vector, double* F_mod, double* f, double* x, int N, double L);
+double TEST_forces();
 
 #endif
