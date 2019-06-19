@@ -45,7 +45,12 @@ int main(int argc, char *argv[]){
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
-	int N_frames = 100;
+	int N_frames;
+	
+	printf("\nPasame la cantidad de frames que queres\n");
+	scanf("%i", &N_frames);
+
+// Configuración de posiciones y velocidades iniciales
 
 	set_x(x, N, L);
 	set_v(v, N, 1);
@@ -70,8 +75,6 @@ int main(int argc, char *argv[]){
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
-	
-	forces(dx_vector, F_mod, f, x, N, L);
 
 	free(x);
 	free(v);

@@ -20,7 +20,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 {
 	int i, j, k;
 	double r2, V;
-	double rc2 = 2.5*2.5;
+	double rc2 = 2.5*2.5; //el radio de corte standar al cuadrado (definido así)
 
 	for(i = 0; i < N - 1; i++)
 	{
