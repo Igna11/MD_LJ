@@ -5,6 +5,7 @@
 #include "inicializar.h"
 #include "avanzar.h"
 #include "visualizacion.h"
+#include "Tests.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -61,7 +62,8 @@ int main(int argc, char *argv[]){
 	{	
 		for(int i = 0; i < 3*N; i = i + 3)
 		{
-			x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
+			//x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
+			TEST_forces(dx_vector, F_mod, f, x, N, L);
 			
 			//Condición periódica de contorno para la posición
 			if(x[i]>L)
