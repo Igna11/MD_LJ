@@ -62,8 +62,7 @@ int main(int argc, char *argv[]){
 	{	
 		for(int i = 0; i < 3*N; i = i + 3)
 		{
-			//x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
-			TEST_forces(dx_vector, F_mod, f, x, N, L);
+			x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
 			
 			//Condición periódica de contorno para la posición
 			if(x[i]>L)

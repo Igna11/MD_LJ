@@ -11,7 +11,7 @@ double pair_force(double r2, double* F_mod)
 	double V; 
 	
 	//sigma = epsilon = 1
-	F_mod[0] = 24.0*(2.0/r6 - 1.0)/(r6 + r2);
+	F_mod[0] = 24.0*(2.0/r6 - 1.0)/(r6 * r2);
 	V = 4.0*(1.0/r6)*((1.0/r6)-1);
 	return V;
 }
@@ -27,7 +27,16 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 		for(j = i + 1; j < N; j++)
 		{
 			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
-			delta_x(&x[i], &x[j], L, dx_vector);
+			delta_x(&x[i], &x[j], L, dx_vector);	
+			
+					
+			for(i = 0; i < 3; i++)
+			{
+				printf("%lf\t",dx_vector[i]);
+			}
+			printf("\n");
+
+			
 			r2 = norma2(dx_vector);
 			
 			if(r2 < rc2) V = pair_force(r2, F_mod);
@@ -38,7 +47,10 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 				f[3*i+k] += F_mod[0]*dx_vector[k];
 				f[3*j+k] -= F_mod[0]*dx_vector[k];
 			}
+			
+			// Reinicio F_mod 
 			F_mod[0] = 0.0;
+			
 		}
 	}
 	return 0;

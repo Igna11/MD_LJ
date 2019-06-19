@@ -6,7 +6,7 @@
 
 //declaracion de funciones
 
-double TEST_pair_force(double r2, double* F_mod);
+double TEST_pair_force();
 double TEST_forces();
 
 #endif
