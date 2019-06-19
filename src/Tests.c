@@ -41,20 +41,15 @@ double TEST_forces(double* dx_vector, double* F_mod, double* f, double* x, int N
 	
 	x[0] = 0.1*L;/*eje x en el 10% de L*/
 	x[3] = 0.9*L;/*eje x en el 90% de L*/
-	x[1] = x[2] = x[4] = x[5] = 0.5; /*eje y z ambas partículas alineadas en la mitad de L*/
+	x[1] = x[2] = x[4] = x[5] = 0.5*L; /*eje y z ambas partículas alineadas en la mitad de L*/
 	
 	forces(dx_vector, F_mod, f, x, N, L);
-	for(i = 0; i < N - 1; i++)
-	{
-		fprintf(fp,"%i\t", i);
-		for(j = i + 1; N; j++)
-		{
-			for(k = 0; k < 3; k++)
-			{
-				fprintf(fp, "%lf\n", f[3*i+k]);
-			}
-		}
+	for(i = 0; i < N; i++)
+	{	
+		printf("%i\n", i);
+		fprintf(fp, "%lf\n", f[i]);
 	}
+	
 	fclose(fp);
 	return 0;
 }
