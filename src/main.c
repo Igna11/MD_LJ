@@ -56,33 +56,16 @@ int main(int argc, char *argv[]){
 	
 // Configuración de posiciones, velocidades y fuerzas iniciales
 
-	set_x(x, N, L);
-	set_v(v, N, 1);
+	set_x(x, L, N);
+	set_v(v, 1, N);
 	forces(dx_vector, F_mod, f, x, L, N);
 
 // Asignacion de velocidades	
 
 	for(int l = 0; l < N_frames; l++)
 	{	
-		for(int i = 0; i < 3*N; i ++)
-		{
-			// x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
-			
-			velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
-			printf("Frame: %i\t Particula %i\n",l,i);
-			
-			/*
-			//Condición periódica de contorno para la posición
-			if(x[i]>L)
-			{
-				x[i] = x[i]-L;
-			}
-			else if(x[i]<0)
-			{
-				x[i] = x[i]+L;
-			}
-			*/
-		}
+		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 		
 	}
