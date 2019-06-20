@@ -41,7 +41,7 @@ double TEST_delta_x()
 	free(x1);
 	free(x2);
 	free(dx);
-	// cualquier cosa
+	// linea 44
 	return 0;
 }
 
@@ -131,5 +131,4 @@ double TEST_forces()
 	free(F_mod);
 	
 	return 0;
-	//prueba random
 }
