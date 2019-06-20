@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L = 10, h = 0.001;
+	double L = 10, h;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
@@ -30,6 +30,7 @@ int main(int argc, char *argv[]){
 	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
 	
 //------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
+
 	for(i = 0; i < 3*N; i++)
 	{
 		x[i] = 0.0;
@@ -50,7 +51,9 @@ int main(int argc, char *argv[]){
 	
 	printf("\nPasame la cantidad de frames que queres\n");
 	scanf("%i", &N_frames);
-
+	printf("\nPasame el paso temporal h\n");
+	scanf("%lf", &h);
+	
 // Configuración de posiciones, velocidades y fuerzas iniciales
 
 	set_x(x, N, L);
