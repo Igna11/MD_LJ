@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
 			// x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
 			
 			velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
-			printf("voy por %i\n",i);
+			printf("Frame: %i\t Particula %i\n",l,i);
 			
 			/*
 			//Condición periódica de contorno para la posición
