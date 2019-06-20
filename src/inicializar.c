@@ -5,7 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-double set_x(double *x, int N, double L)
+double set_x(double *x, double L, int N)
 {
 	int n = cbrt(N);
 	int i;
@@ -31,7 +31,7 @@ double set_x(double *x, int N, double L)
 	return dL;
 }
 
-double set_v(double *v, int N, double T)
+double set_v(double *v, double T, int N)
 {
 	double sigma = sqrt(T);
 	double VCM[3] = {0,0,0};

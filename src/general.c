@@ -29,7 +29,7 @@ double norma2(double* V)
 	return norma;
 }
 
-double delta_x(double* x1, double* x2, double L, double* dx)
+double delta_x(double* x1, double* x2, double* dx, double L)
 {
 	/* 
 	Esta función va a devolver en el vector dx (que le estamos dando para que _rellene_ la diferencia componente a componente entre los vectores x1 y x2.

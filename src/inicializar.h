@@ -3,7 +3,7 @@
 
 #include "math.h"
 
-double set_x(double *x, int N, double L);
-double set_v(double *v, int N, double T);
+double set_x(double *x, double L, int N);
+double set_v(double *v, double T, int N);
 
 #endif

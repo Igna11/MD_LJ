@@ -1,11 +1,11 @@
-#include "general.h"
+﻿#include "general.h"
 #include "interaccion.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
 
-double pair_force(double r2, double* F_mod)
+double pair_force(double* F_mod, double r2)
 {
 	/*
 	Esta funcion calcula el modulo de la fuerza de interaccion dado un potencial de Lenard Jones.
@@ -21,7 +21,7 @@ double pair_force(double r2, double* F_mod)
 	return V;
 }
 
-double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, double L)
+double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, int N)
 {
 	int i, j, k;
 	double r2, V;

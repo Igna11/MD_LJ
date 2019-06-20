@@ -112,7 +112,7 @@ double TEST_forces()
 	//quiero setear solo 2 partículas con dos posiciones iniciales fijas y sin velocidades
 	x[5]=0.2*L;
 		
-	forces(dx_vector, F_mod, f, x, N, L);
+	forces(dx_vector, F_mod, f, x, L, N);
 	
 	sprintf(filename, "FORCES_TEST.txt");
 	fp = fopen(filename, "w ");

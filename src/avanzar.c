@@ -19,7 +19,7 @@ double velocity_verlet(double* x, double* v, double* f, double* F_mod, double h,
 	}
 	
 	// Con las nuevas posiciones se calculan las nuevas fuerzas
-	forces(dx_vector, F_mod, f, x, N, L); // Esto define f(t+h)
+	forces(dx_vector, F_mod, f, x, L, N); // Esto define f(t+h)
 
 	// Con las nuevas fuerzas calculo el medio paso que faltaba para terminar de actualizar las velocidades
 	for(i = 0; i<3*N; i++)
