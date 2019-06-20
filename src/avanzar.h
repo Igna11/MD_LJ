@@ -5,6 +5,6 @@
 
 // Declaracion de funciones
 
-double velocity_verlet(double* x, double* v, double* f, double* F_mod, double h, double L, int N);
+double velocity_verlet(double* x, double* v, double* dx_vector, double* f, double* F_mod, double h, double L, int N);
 
 #endif

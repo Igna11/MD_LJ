@@ -32,12 +32,12 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 		for(j = i + 3; j < 3*N; j = j + 3)
 		{
 			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
-			delta_x((x+i), (x+j), L, dx_vector);			
+			delta_x((x+i), (x+j), dx_vector, L);			
 			r2 = norma2(dx_vector);
 			
 			if(r2 < rc2) 
 			{
-				V = pair_force(r2, F_mod);
+				V = pair_force(F_mod, r2);
 			}
 			
 			//Calcula la dirección de la fuerza resultante de i con todas las partículas j
