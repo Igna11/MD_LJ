@@ -15,6 +15,17 @@ double velocity_verlet(double* x, double* v, double* dx_vector, double* f, doubl
 	for(i = 0; i<3*N; i++)
 	{
 		x[i] = x[i] + v[i]*h + 0.5*f[i]*h*h; // Esto quisiera ser x(t+h) - Se actualizan posiciones en un paso entero
+		
+		//Condición periódica de contorno para la posición
+		if(x[i]>L)
+		{
+			x[i] = x[i]-L;
+		}
+		else if(x[i]<0)
+		{
+			x[i] = x[i]+L;
+		}
+		
 		v[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h/2). - Se actualiza en medio paso la velocidad
 	}
 	

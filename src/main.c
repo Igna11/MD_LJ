@@ -68,6 +68,7 @@ int main(int argc, char *argv[]){
 			velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 			printf("voy por %i\n",i);
 			
+			/*
 			//Condición periódica de contorno para la posición
 			if(x[i]>L)
 			{
@@ -77,6 +78,7 @@ int main(int argc, char *argv[]){
 			{
 				x[i] = x[i]+L;
 			}
+			*/
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 		
