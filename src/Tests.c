@@ -41,7 +41,6 @@ double TEST_delta_x()
 	free(x1);
 	free(x2);
 	free(dx);
-	// linea 44
 	return 0;
 }
 
