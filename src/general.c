@@ -31,6 +31,10 @@ double norma2(double* V)
 
 double delta_x(double* x1, double* x2, double L, double* dx)
 {
+	/* 
+	Esta función va a devolver en el vector dx (que le estamos dando para que _rellene_ la diferencia componente a componente entre los vectores x1 y x2.
+	Incluir las condiciones acorde a L da la condicion periodica de borde.
+	*/
 	//Condicion periodica de contorno en los bordes
 	int k;
 	for(k = 0; k < 3; k++)

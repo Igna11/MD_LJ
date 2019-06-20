@@ -1,3 +1,5 @@
+/* gcc -Wall -O3 -o Tests.exe main_tests.c interaccion.c general.c Tests.c -lm*/
+
 #include "general.h"
 #include "interaccion.h"
 #include "Tests.h"
@@ -8,6 +10,8 @@
 
 int main(int argc, char *argv[])
 {
-	TEST_forces();
+	TEST_delta_x();
+	// TEST_pair_force();
+	// TEST_forces();
 	return 0;
 	}

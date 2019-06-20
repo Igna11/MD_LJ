@@ -29,14 +29,6 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
 			delta_x(&x[i], &x[j], L, dx_vector);	
 			
-					
-			for(i = 0; i < 3; i++)
-			{
-				printf("%lf\t",dx_vector[i]);
-			}
-			printf("\n");
-
-			
 			r2 = norma2(dx_vector);
 			
 			if(r2 < rc2) V = pair_force(r2, F_mod);

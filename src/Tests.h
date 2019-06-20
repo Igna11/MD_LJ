@@ -6,6 +6,7 @@
 
 //declaracion de funciones
 
+double TEST_delta_x();
 double TEST_pair_force();
 double TEST_forces();
 

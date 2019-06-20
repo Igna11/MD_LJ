@@ -1,9 +1,51 @@
 #include "general.h"
 #include "interaccion.h"
+#include "Tests.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+
+double TEST_delta_x()
+{
+	double *x1 = (double *) malloc(3*sizeof(double));
+	double *x2 = (double *) malloc(3*sizeof(double));
+	double *dx = (double *) malloc(3*sizeof(double));
+	int L = 10;
+	
+	// DEFINO X1, X2 Y DX
+	x1[0] = 1;
+	x1[1] = x1[2] = 5;
+	
+	x2[0] = 3;
+	x2[1] = x2[2] = 2;
+	
+	int k;
+	for(k = 0; k < 3; k++)
+	{
+		dx[k] = x1[k] - x2[k];
+		printf("primero vale %lf\n",dx[k]);
+		if(dx[k] < -L/2)
+		{
+			dx[k] = dx[k] + L;
+		}
+		else if(dx[k] > L/2)
+		{
+			dx[k] = dx[k] - L;
+		}
+		printf("y despues de los ifs vale %lf\n",dx[k]);
+	}
+	
+	printf("el vector queda %lf\t%lf\t%lf\n", dx[0],dx[1],dx[2]);
+	
+	free(x1);
+	free(x2);
+	free(dx);
+	
+	return 0;
+}
+
+
 
 double TEST_pair_force()
 {
@@ -37,9 +79,6 @@ double TEST_forces() // hace el test para dos particulas en y=z=0.
 	char filename[64];
 	int i;
 	
-	sprintf(filename, "FORCES_TEST.txt");
-	fp = fopen(filename, "w ");
-	
 	int N = 2;
 	float L = 10;
 	double *x = (double *) malloc(3*N*sizeof(double));
@@ -61,9 +100,12 @@ double TEST_forces() // hace el test para dos particulas en y=z=0.
 	
 	
 	//quiero setear solo 2 partículas con dos posiciones iniciales fijas y sin velocidades
-	x[3]=0.9*L;
+	x[0]=0.6*L;
 	
 	forces(dx_vector, F_mod, f, x, N, L);
+	
+	sprintf(filename, "FORCES_TEST.txt");
+	fp = fopen(filename, "w ");
 		
 	for(i = 0; i < 3*N; i = i+3)
 	{	
