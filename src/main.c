@@ -82,6 +82,8 @@ int main(int argc, char *argv[]){
 	free(f);
 	free(dx_vector);
 	free(F_mod);
+	
+	
 // Capaz notaron que las velocidades estan al pedo, nos va a servir guardarlas
 // para tener checkpoints de estados bien termalizados.
 // Checkpoint is love, checkpoint is life
