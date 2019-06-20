@@ -61,7 +61,7 @@ int main(int argc, char *argv[]){
 
 	for(int l = 0; l < N_frames; l++)
 	{	
-		for(int i = 0; i < 3*N; i = i + 3)
+		for(int i = 0; i < 3*N; i ++)
 		{
 			// x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
 			
