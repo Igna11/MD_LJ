@@ -70,6 +70,9 @@ double TEST_pair_force()
 		printf("va por la iteracion %lf\n",k);
 	}
 	fclose(fp);
+	
+	free(F_mod);
+	
 	return 0;
 }
 
@@ -121,5 +124,11 @@ double TEST_forces()
 	}
 	
 	fclose(fp);
+	
+	free(x);
+	free(f);
+	free(dx_vector);
+	free(F_mod);
+	
 	return 0;
 }
