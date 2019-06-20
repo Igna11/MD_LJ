@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
 	double *dx_vector = (double *) malloc(3*sizeof(double)); //vector distancia entre un par de partículas (la menor entre la distancia con la partícula real y la partícula imagen)
 	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
 	
-//------------------ REINICIAMOS x, v y f ----------------------------------------//
+//------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
 	for(i = 0; i < 3*N; i++)
 	{
 		x[i] = 0.0;
