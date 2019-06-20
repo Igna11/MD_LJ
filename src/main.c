@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L = 10, dx = 0.5;
+	double L = 10, h = 0.001;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
@@ -51,10 +51,11 @@ int main(int argc, char *argv[]){
 	printf("\nPasame la cantidad de frames que queres\n");
 	scanf("%i", &N_frames);
 
-// Configuración de posiciones y velocidades iniciales
+// Configuración de posiciones, velocidades y fuerzas iniciales
 
 	set_x(x, N, L);
 	set_v(v, N, 1);
+	forces(dx_vector, F_mod, f, x, L, N);
 
 // Asignacion de velocidades	
 
@@ -62,7 +63,10 @@ int main(int argc, char *argv[]){
 	{	
 		for(int i = 0; i < 3*N; i = i + 3)
 		{
-			x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
+			// x[i] = x[i] + dx*v[i]; // Genero perturbacion random 
+			
+			velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+			printf("voy por %i\n",i);
 			
 			//Condición periódica de contorno para la posición
 			if(x[i]>L)
@@ -75,6 +79,7 @@ int main(int argc, char *argv[]){
 			}
 		}
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
+		
 	}
 
 	free(x);
