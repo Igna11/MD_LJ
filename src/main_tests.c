@@ -10,8 +10,8 @@
 
 int main(int argc, char *argv[])
 {
-	TEST_delta_x();
+	// TEST_delta_x();
 	// TEST_pair_force();
-	// TEST_forces();
+	TEST_forces();
 	return 0;
 	}

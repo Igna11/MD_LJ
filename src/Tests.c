@@ -73,8 +73,16 @@ double TEST_pair_force()
 	return 0;
 }
 
-double TEST_forces() // hace el test para dos particulas en y=z=0.
+
+
+double TEST_forces()
 {	
+	/* 
+	Este test fue acompañado de multiples "printf" dentro de la funcion original forces para hacer un seguimiento (luego se descartaron los printf).
+	El archivo que se crea de este test "FORCES_TEST" devuelve una matriz en la que cada fila es una particula y las columnas son las componentes x,y y z de la fuerza sobre dicha particula.
+	Hace el test para dos particulas: una posicionada en (0,0,0) y la otra en (0,0,2). Ambas sin velocidad.
+	*/
+
 	FILE* fp;
 	char filename[64];
 	int i;
@@ -100,8 +108,8 @@ double TEST_forces() // hace el test para dos particulas en y=z=0.
 	
 	
 	//quiero setear solo 2 partículas con dos posiciones iniciales fijas y sin velocidades
-	x[0]=0.6*L;
-	
+	x[5]=0.2*L;
+		
 	forces(dx_vector, F_mod, f, x, N, L);
 	
 	sprintf(filename, "FORCES_TEST.txt");

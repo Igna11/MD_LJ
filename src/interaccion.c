@@ -7,6 +7,11 @@
 
 double pair_force(double r2, double* F_mod)
 {
+	/*
+	Esta funcion calcula el modulo de la fuerza de interaccion dado un potencial de Lenard Jones.
+	El double F_mod que le damos es para que lo rellene con ese valor.
+	Además, calcula el valor de la energia potencial y lo devuelve.
+	*/
 	double r6 = r2*r2*r2;
 	double V; 
 	
@@ -22,22 +27,24 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, int N, dou
 	double r2, V;
 	double rc2 = 2.5*2.5; //el radio de corte standar al cuadrado (definido así)
 
-	for(i = 0; i < N - 1; i++)
+	for(i = 0; i < 3*(N - 1); i = i + 3)
 	{
-		for(j = i + 1; j < N; j++)
+		for(j = i + 3; j < 3*N; j = j + 3)
 		{
 			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
-			delta_x(&x[i], &x[j], L, dx_vector);	
-			
+			delta_x((x+i), (x+j), L, dx_vector);			
 			r2 = norma2(dx_vector);
 			
-			if(r2 < rc2) V = pair_force(r2, F_mod);
+			if(r2 < rc2) 
+			{
+				V = pair_force(r2, F_mod);
+			}
 			
 			//Calcula la dirección de la fuerza resultante de i con todas las partículas j
 			for(k = 0; k < 3; k++)
 			{
-				f[3*i+k] += F_mod[0]*dx_vector[k];
-				f[3*j+k] -= F_mod[0]*dx_vector[k];
+				f[i+k] += F_mod[0]*dx_vector[k];
+				f[j+k] -= F_mod[0]*dx_vector[k];
 			}
 			
 			// Reinicio F_mod 
