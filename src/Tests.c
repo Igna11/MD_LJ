@@ -41,7 +41,6 @@ double TEST_delta_x()
 	free(x1);
 	free(x2);
 	free(dx);
-	// cualquier cosa paula zorra
 	return 0;
 }
 
@@ -131,5 +130,4 @@ double TEST_forces()
 	free(F_mod);
 	
 	return 0;
-	//prueba random
 }
