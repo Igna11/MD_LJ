@@ -44,6 +44,7 @@ int main(int argc, char *argv[]){
 	}
 	F_mod[0] = 0.0;
 
+//----------------------------------------------------------------------------------------------//
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
@@ -63,11 +64,10 @@ int main(int argc, char *argv[]){
 // Asignacion de velocidades	
 
 	for(int l = 0; l < N_frames; l++)
-	{	
+	{			
 		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
-		
 	}
 
 	free(x);

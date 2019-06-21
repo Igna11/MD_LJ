@@ -26,7 +26,12 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 	int i, j, k;
 	double r2, V;
 	double rc2 = 2.5*2.5; //el radio de corte standar al cuadrado (definido así)
-
+	//RESETEA f
+	for(i = 0; i < 3*N; i++)
+	{
+		f[i] = 0;
+	}
+	
 	for(i = 0; i < 3*(N - 1); i = i + 3)
 	{
 		for(j = i + 3; j < 3*N; j = j + 3)
@@ -48,8 +53,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 			}
 			
 			// Reinicio F_mod 
-			F_mod[0] = 0.0;
-			
+			F_mod[0] = 0.0; 
 		}
 	}
 	return 0;

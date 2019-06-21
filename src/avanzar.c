@@ -14,7 +14,6 @@ double velocity_verlet(double* x, double* v, double* dx_vector, double* f, doubl
 	int i;
 	for(i = 0; i<3*N; i++)
 	{
-
 		x[i] = x[i] + v[i]*h + 0.5*f[i]*h*h; // Esto quisiera ser x(t+h) - Se actualizan posiciones en un paso entero
 		
 		//Condición periódica de contorno para la posición
@@ -38,6 +37,5 @@ double velocity_verlet(double* x, double* v, double* dx_vector, double* f, doubl
 	{
 		v[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h)
 	}
-		
-	return 0.0;
+	return 0;
 }
