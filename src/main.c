@@ -18,11 +18,20 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L = 10.0, h;
+	double L, T, rho, h;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
+	printf("\nPasame la temperatura\n");
+	scanf("%lf", &T);
+	printf("\nPasame la densidad de particulas\n");
+	scanf("%lf", &rho);
 	
+//-------------------- CALCULA EL LADO DE LA CAJA (CUBICA) EN FUNCION DE RHO---//
+	
+	L = cbrt(N/rho);
+	
+//-----------------------------------------------------------------------------//
 	double *x = (double *) malloc(3*N*sizeof(double)); //posición de cada partícula
 	double *v = (double *) malloc(3*N*sizeof(double)); //velocidad de cada partícula
 	double *f = (double *) malloc(3*N*sizeof(double)); //fuerza de sobre cada partícula
