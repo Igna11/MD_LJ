@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L, T, rho, h;
+	double L, T, rho, h, E_pot, vel,lambda;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
@@ -57,6 +57,8 @@ int main(int argc, char *argv[]){
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
+
+	FILE* fp;
 	int N_frames;
 	
 	printf("\nPasame la cantidad de frames que queres\n");
@@ -72,13 +74,27 @@ int main(int argc, char *argv[]){
 
 // Asignacion de velocidades	
 
+	fp = fopen("EPot_ECin_Lambda.txt","w");
 	for(int l = 0; l < N_frames; l++)
-	{			
-		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+	{	
+		// Sumo todas las velocidades, la reinicio primero
+		vel = 0.0;
+		for(i = 0; i < 3*N; i++)
+		{
+			vel += v[i]*v[i];
+		}
+		
+		E_pot = velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+		
+		lambda = Verlet_coef(x,L,N);
+		
+		fprintf(fp,"%lf\t%lf\t%lf\n", (double)E_pot/(double)N, vel/(2.0*N),lambda);
+		
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
-
+	fclose(fp);
+	
 	free(x);
 	free(v);
 	free(f);

@@ -32,6 +32,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 		f[i] = 0;
 	}
 	
+	V = 0;
 	for(i = 0; i < 3*(N - 1);  i = i + 3)
 	{
 		for(j = i + 3; j < 3*N; j = j + 3)
@@ -42,7 +43,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 			
 			if(r2 < rc2) 
 			{
-				V = pair_force(F_mod, r2);
+				V += pair_force(F_mod, r2);
 			}
 			
 			//Calcula la dirección de la fuerza resultante de i con todas las partículas j
@@ -56,5 +57,5 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 			F_mod[0] = 0.0; 
 		}
 	}
-	return 0;
+	return V;
 }
