@@ -88,7 +88,7 @@ int main(int argc, char *argv[]){
 		
 		lambda = Verlet_coef(x,L,N);
 		
-		fprintf(fp,"%lf\t%lf\t%lf\n", (double)E_pot/(double)N, vel/(2.0*N),lambda);
+		fprintf(fp,"%i\t%lf\t%lf\t%lf\n", N_frame, (double)E_pot/(double)N, vel/(2.0*N),lambda);
 		
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
