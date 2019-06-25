@@ -32,7 +32,7 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 		f[i] = 0;
 	}
 	
-	for(i = 0; i < 3*(N - 1); i = i + 3)
+	for(i = 0; i < 3*(N - 1);  i = i + 3)
 	{
 		for(j = i + 3; j < 3*N; j = j + 3)
 		{

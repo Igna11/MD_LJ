@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L = 10, h;
+	double L = 10.0, h;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
