@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 // Configuración de posiciones, velocidades y fuerzas iniciales
 
 	set_x(x, L, N);
-	set_v(v, 1, N);
+	set_v(v, T, N);
 	forces(dx_vector, F_mod, f, x, L, N);
 
 // Asignacion de velocidades	
