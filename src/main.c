@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
 	int N, i;
-	double L, T, rho, h, E_pot, vel,lambda;
+	double L, T, rho, h, E_pot, vel,lambda, H;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
@@ -88,7 +88,9 @@ int main(int argc, char *argv[]){
 		
 		lambda = Verlet_coef(x,L,N);
 		
-		fprintf(fp,"%i\t%lf\t%lf\t%lf\n", N_frame, (double)E_pot/(double)N, vel/(2.0*N),lambda);
+		H = h_Boltzmann(v, T, h, N);
+		
+		fprintf(fp,"%i\t%lf\t%lf\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N), lambda, H);
 		
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)

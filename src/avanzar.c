@@ -60,3 +60,21 @@ double Verlet_coef(double* x, double L, int N)
 	return lambda;
 	
 }
+
+double MB(double* v, double T, int i)
+{
+	double exponente = -v[i]*v[i]/(2*T);
+	double denominador = pow(2*M_PI*T, 3/2);
+	return exp(exponente)/denominador;
+}
+
+double h_Boltzmann(double* v, double T, double h, int N)
+{
+	int i;
+	double H = 0.0;
+	for(i = 0; i < 3*N; i++)
+	{
+		H += MB(v, T, i)*log(MB(v, T, i))*h;
+	}
+	return H/3;
+}
