@@ -15,7 +15,7 @@ double gaussiana(double mu, double sigma)
 	{
 		z += random();
 	}
-	z = sqrt(12*n)*(z/n - 0.5);
+	z = sqrt(12*(double)n)*(z/(double)n - 0.5);
 	return z*sigma+mu;
 }
 
