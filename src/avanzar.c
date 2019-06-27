@@ -50,7 +50,7 @@ double Verlet_coef(double* x, double L, int N)
 	n = cbrt(N);
 	dL = L/n;
 
-	for(i = 0; i<3*N; i = i+3)
+	for(i = 0; i<3*N; i++)
 	{
 		C += cos(2*M_PI*(x[i]-dL*0.5)/dL); // Es como calcular todo de una
 	}
