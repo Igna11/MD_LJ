@@ -1,4 +1,4 @@
-/* gcc -Wall -O3 -o DM.exe main_1b.c visualizacion.c interaccion.c general.c avanzar.c inicializar.c -lm*/
+/* gcc -Wall -O3 -o DM_1b.exe main_1b.c visualizacion.c interaccion.c general.c avanzar.c inicializar.c -lm*/
 
 #include "general.h"
 #include "interaccion.h"
