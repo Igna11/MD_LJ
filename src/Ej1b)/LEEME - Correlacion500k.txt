@@ -1,0 +1,9 @@
+Correlacion500k.txt es un archivo que tiene el vector
+con las correlaciones para cada k, obtenido a partir de 
+simular 1.100.000 (un millón cien mil) frames de evolución
+del sistema, con T = 0.728, rho = 0.8442, N = 512.
+Se elimininan los primeros 100mil datos del vector 
+y se trabaja con el vector resultante, partiéndolo en
+500 pedazos, a los cuales se les calculo la correlacion
+con k hasta 250 y luego se promediaron. El resultado de
+ese promedio es Correlacion500k.txt
