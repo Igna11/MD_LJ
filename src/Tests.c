@@ -149,3 +149,28 @@ double TEST_find_minimum()
 	
 	return 0.0;
 }
+
+
+double TEST_histograma()
+{
+  int i,m;
+  double a,b,h;
+  double x[3000],y[6000];
+
+  m=10;
+  a=1.0;
+  b=6.0;
+
+  x[0]=3.35;
+  x[1]=7.0;
+  x[2]=4.75;
+  x[3]=4.75;
+  x[5]=1.1;
+
+  h = histograma(y,x,5,a,b,m);
+
+  printf("h es %lf\n",h);
+  
+  return 0;
+  
+}

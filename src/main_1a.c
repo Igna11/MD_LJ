@@ -40,7 +40,8 @@ int main(int argc, char *argv[]){
 	double *f = (double *) malloc(3*N*sizeof(double)); //fuerza de sobre cada partícula
 	double *dx_vector = (double *) malloc(3*sizeof(double)); //vector distancia entre un par de partículas (la menor entre la distancia con la partícula real y la partícula imagen)
 	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
-	
+	double *y = (double *) malloc(2*3*N*sizeof(double)); // este es un vector auxiliar que usamos para que la funcion h_boltzman rellene. tiene que tener 2*tamaño de v. (no hace falta reiniciarlo en ppio pero lo reinicio por las dudas)
+		
 //------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
 
 	for(i = 0; i < 3*N; i++)
@@ -54,6 +55,12 @@ int main(int argc, char *argv[]){
 	{
 		dx_vector[i] = 0;
 	}
+	
+	for(i = 0; i < 6*N; i++)
+	{
+		y[i] = 0.0;
+	}
+	
 	F_mod[0] = 0.0;
 
 //----------------------------------------------------------------------------------------------//
@@ -91,7 +98,7 @@ int main(int argc, char *argv[]){
 		
 		lambda = Verlet_coef(x,L,N);
 		
-		H = h_Boltzmann(v, T, h, N);
+		H = h_Boltzmann(v, y, T, h, N);
 		
 		fprintf(fp,"%i\t%lf\t%lf\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N), lambda, H);
 		

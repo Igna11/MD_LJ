@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	// TEST_delta_x();
 	// TEST_pair_force();
 	// TEST_forces();
-	TEST_find_minimum();
+	// TEST_find_minimum();
+	TEST_histograma();
 	return 0;
 	}

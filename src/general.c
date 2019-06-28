@@ -113,3 +113,24 @@ double find_min(double* array, int size)
 	return minimum;
 	
 }
+
+
+double find_max(double* array, int size)
+{
+	/* Le paso el vector y su tamaño y me encuentra el elemento minimo */
+	
+	double maximum;
+	int c;
+	maximum = array[0];
+   
+    for (c = 1; c < size; c++)
+    {
+        if (*(array+c) > maximum)
+        {
+           maximum = *(array+c);
+        }
+    }
+	
+	return maximum;
+	
+}

@@ -10,5 +10,6 @@ double TEST_delta_x();
 double TEST_pair_force();
 double TEST_forces();
 double TEST_find_minimum();
+double TEST_histograma();
 
 #endif
