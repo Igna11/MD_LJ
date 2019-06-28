@@ -52,3 +52,64 @@ double delta_x(double* x1, double* x2, double* dx, double L)
 	}
 	return 0;
 }
+
+double histograma(double *y,double *x,int n,double a,double b,int m)
+{
+
+  /* 
+     Histograma del vector de datos x[0]...x[n-1] 
+     
+     m  = cantidad de columnas del histograma
+     a,b= limites del histograma 
+     
+     y[0]...y[m-1]  valores de las columnas (normalizados)
+     y[m]...y[2m-1] valores de las marcas de clase
+	 (osea el y se lo damos basicamente para que lo rellene con los datos. hasta m-1 van a ser las alturas de las columnas y de m en adelante van a ser sus posiciones)
+
+  */
+
+  int    i,j;
+  double h,hh,s;
+
+  s=1.0/(double)n;
+  h=(b-a)/(double)m; // interpreto que esto es el ancho de los bins, que es lo que nos interesa en nuestro caso
+  hh=h/2.0;
+
+  for(i=0;i<m;i++)
+    {
+      *(y+i)=0.0;
+      *(y+m+i)=(double)i*h+a+hh;
+    }
+
+  for(i=0;i<n;i++)
+    {
+      j=(int)floor((*(x+i)-a)/h);
+
+      if (j<0) j=0;
+      if (j>m) j=m-1;
+
+      y[j]=y[j]+s;
+    }
+	
+	return h; // entonces le pido que returnee h
+}
+
+double find_min(double* array, int size)
+{
+	/* Le paso el vector y su tamaño y me encuentra el elemento minimo */
+	
+	double minimum;
+	int c;
+	minimum = array[0];
+   
+    for (c = 1; c < size; c++)
+    {
+        if (*(array+c) < minimum)
+        {
+           minimum = *(array+c);
+        }
+    }
+	
+	return minimum;
+	
+}

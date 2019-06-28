@@ -45,7 +45,7 @@ double TEST_delta_x()
 }
 
 
-
+/*
 double TEST_pair_force()
 {
 	FILE* fp;
@@ -74,6 +74,7 @@ double TEST_pair_force()
 	
 	return 0;
 }
+*/
 
 
 
@@ -130,4 +131,21 @@ double TEST_forces()
 	free(F_mod);
 	
 	return 0;
+}
+
+double TEST_find_minimum()
+{
+	int i;
+	double min;
+	double *array = (double *) malloc(3*sizeof(double));
+	
+	for(i = 0; i < 3; i++)
+	{
+		array[i] = i+80;
+	}
+	
+	min = find_min(array,3); // le paso el vector y el tamaño del mismo
+	printf("el minimo es %lf\n",min);
+	
+	return 0.0;
 }

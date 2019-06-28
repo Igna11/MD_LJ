@@ -6,5 +6,7 @@ double random();
 double gaussiana(double,double);
 double norma2(double*);
 double delta_x(double*, double*, double*, double);
+double histograma(double *y,double *x,int n,double a,double b,int m);
+double find_min(double* array, int size);
 
 #endif
