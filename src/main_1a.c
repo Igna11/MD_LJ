@@ -111,6 +111,7 @@ int main(int argc, char *argv[]){
 	free(v);
 	free(f);
 	free(dx_vector);
+	free(y);
 	free(F_mod);
 	
 	
