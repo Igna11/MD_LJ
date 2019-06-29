@@ -76,8 +76,11 @@ int main(int argc, char *argv[]){
 	FILE* fp_pot;
 	FILE* fp_cin;
 	
-	fp_pot = fopen("EPot_1c_tau140.txt","w");
-	fp_cin = fopen("Ecin_1c_tau140.txt","w");
+	fp_pot = fopen("EPot_1c_tau140_2.txt","w");
+	fp_cin = fopen("Ecin_1c_tau140_2.txt","w");
+	
+	srand(time(NULL));
+
 	for(T = Ti; T < Tf; T = T + 0.01)
 	{
 		set_x(x, L, N);
@@ -88,7 +91,7 @@ int main(int argc, char *argv[]){
 	
 		fprintf(fp_pot, "%lf\t", T);
 		fprintf(fp_cin, "%lf\t", T);
-		
+				
 		for(int l = 0; l < N_frames; l++)
 		{	
 			// Sumo todas las velocidades, la reinicio primero
@@ -102,6 +105,8 @@ int main(int argc, char *argv[]){
 			
 			E_potN = (double)E_pot/(double)N;
 			E_cinN = vel/(2.0*N);
+			
+			m++;
 			
 			if(l >= It_termalizacion && m >= It_correlacion)
 			{
