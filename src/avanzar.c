@@ -68,13 +68,23 @@ double MB(double* v, double T, int i)
 	return exp(exponente)/denominador;
 }
 
-double h_Boltzmann(double* v, double T, double h, int N)
+double h_Boltzmann(double* v, double* y, double T, double h, int N, int m)
 {
 	int i;
-	double H = 0.0;
+	double H = 0.0, Delta_v, a, b;
+	
+	// Corro histograma para obtener el Delta_v que necesitamos 
+	// Para eso busco primero los inputs que tengo que darle 
+	
+	// OJO: ESTO COMO SE QUE LO VAMOS A USAR CON V, YA PUSE DE SIZE 3*N, PARA OTRO VECTOR O HACERLO MAS GENERAL HAY QUE CAMBIAR ESO
+	a = find_min(v,3*N); // limite del histograma
+	b = find_max(v,3*N); // limite del histograma
+	
+	Delta_v = histograma(y,v,3*N,a,b,m);
+	
 	for(i = 0; i < 3*N; i++)
 	{
-		H += MB(v, T, i)*log(MB(v, T, i))*h;
+		H += MB(v, T, i)*log(MB(v, T, i))*Delta_v;
 	}
 	return H/3;
 }

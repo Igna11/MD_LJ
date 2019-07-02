@@ -46,7 +46,7 @@ double set_v(double *v, double T, int N)
 	{
 		for(k=0;k<3; k++)
 		{
-			VCM[k] += v[3*i+k]/N;
+			VCM[k] += v[3*i+k]/(double)N;
 		}
 	}
 	

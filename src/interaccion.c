@@ -33,28 +33,29 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 	}
 	
 	V = 0;
-	for(i = 0; i < 3*(N - 1);  i = i + 3)
+	for(i = 0; i < (N - 1);  i++)
 	{
-		for(j = i + 3; j < 3*N; j = j + 3)
+		for(j = i + 1; j < N; j++)
 		{
 			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
-			delta_x((x+i), (x+j), dx_vector, L);			
+			delta_x((x+3*i), (x+3*j), dx_vector, L);			
 			r2 = norma2(dx_vector);
 			
 			if(r2 < rc2) 
 			{
 				V += pair_force(F_mod, r2);
-			}
-			
-			//Calcula la dirección de la fuerza resultante de i con todas las partículas j
-			for(k = 0; k < 3; k++)
-			{
-				f[i+k] += F_mod[0]*dx_vector[k];
-				f[j+k] -= F_mod[0]*dx_vector[k];
+				
+				//Calcula la dirección de la fuerza resultante de i con todas las partículas j
+				for(k = 0; k < 3; k++)
+				{
+					f[3*i+k] += F_mod[0]*dx_vector[k];
+					f[3*j+k] -= F_mod[0]*dx_vector[k];
+				}
+				
 			}
 			
 			// Reinicio F_mod 
-			F_mod[0] = 0.0; 
+			// F_mod[0] = 0.0; 
 		}
 	}
 	return V;
