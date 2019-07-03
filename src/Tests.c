@@ -1,5 +1,7 @@
 #include "general.h"
+#include "inicializar.h"
 #include "interaccion.h"
+#include "avanzar.h"
 #include "Tests.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -153,7 +155,7 @@ double TEST_find_minimum()
 
 double TEST_histograma()
 {
-  int i,m;
+  int m;
   double a,b,h;
   double x[3000],y[6000];
 
@@ -173,4 +175,84 @@ double TEST_histograma()
   
   return 0;
   
+}
+
+
+double TEST_set_v()
+{
+	int N = 512, i;
+	double *v = (double *) malloc(3*N*sizeof(double)); //velocidad de cada partícula
+	double T = 0.0;
+	FILE* fp;
+	
+	set_v(v, T, N);
+	
+	fp = fopen("TEST_set_v.txt","w");
+
+	for(i=0;i<3*N;i++)
+	{
+      fprintf(fp,"%lf\n",v[i]);
+    }
+	fclose(fp);
+	
+	free(v);
+	
+	return 0;
+}
+
+
+double TEST_v_paso()
+{
+	int N = 512, i;
+	double *v = (double *) malloc(3*N*sizeof(double)); //velocidad de cada partícula
+	double *x = (double *) malloc(3*N*sizeof(double)); //posición de cada partícula
+	double *f = (double *) malloc(3*N*sizeof(double)); //fuerza de sobre cada partícula
+	double *dx_vector = (double *) malloc(3*sizeof(double)); //vector distancia entre un par de partículas (la menor entre la distancia con la partícula real y la partícula imagen)
+	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
+	double T = 0.728, h = 0.001, L;
+	FILE* fp;
+	
+	L = cbrt(N/0.8442);
+//------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
+
+	for(i = 0; i < 3*N; i++)
+	{
+		x[i] = 0.0;
+		v[i] = 0.0;
+		f[i] = 0.0;
+	}
+
+	for(i = 0; i < 3; i++)
+	{
+		dx_vector[i] = 0;
+	}
+	F_mod[0] = 0.0;
+
+	
+	set_x(x, L, N);
+	set_v(v, T, N);
+	forces(dx_vector, F_mod, f, x, L, N);
+	
+	fp = fopen("TEST_v_paso.txt","w");
+
+	for(int l = 0; l < 1500; l++)
+	{	
+		fprintf(fp,"%i\t",l);
+		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+		for(i=0;i<3*N;i++)
+		{
+		  fprintf(fp,"%lf ",v[i]);
+		}
+		fprintf(fp,"\n");
+	}
+	
+	fclose(fp);
+	
+	free(x);
+	free(v);
+	free(f);
+	free(dx_vector);
+	free(F_mod);
+	
+	return 0;
 }

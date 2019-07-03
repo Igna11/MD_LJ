@@ -68,6 +68,7 @@ double MB(double* v, double T, int i)
 	return exp(exponente)/denominador;
 }
 
+
 double h_Boltzmann(double* v, double* y, double T, double h, int N, int m)
 {
 	int i;

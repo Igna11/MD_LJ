@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
 
-	FILE* fp;
+	//FILE* fp;
 	int N_frames;
 	
 	printf("\nPasame la cantidad de frames que queres\n");
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
 
 // Asignacion de velocidades	
 
-	fp = fopen("EPot_ECin_Lambda.txt","w");
+	//fp = fopen("EPot_ECin_Lambda.txt","w");
 	for(int l = 0; l < N_frames; l++)
 	{	
 		// Sumo todas las velocidades, la reinicio primero
@@ -88,14 +88,14 @@ int main(int argc, char *argv[]){
 		
 		lambda = Verlet_coef(x,L,N);
 		
-		H = h_Boltzmann(v, T, h, N);
+		//H = h_Boltzmann(v, T, h, N);
 		
-		fprintf(fp,"%i\t%lf\t%lf\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N), lambda, H);
+		//fprintf(fp,"%i\t%lf\t%lf\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N), lambda, H);
 		
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
-	fclose(fp);
+	//fclose(fp);
 	
 	free(x);
 	free(v);

@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
  Ese archivo lo importas en "Correlacion(Tau).ipynb" y vas a poder estudiar lambda y H para ver la termalizacion
  + te va a dar la correlacion y la cantidad de iteraciones necesaria para evitar estados correlacionados.
 */
-	int N, i;
+	int N, i, m;
 	double L, T, rho, h, E_pot, vel,lambda, H;
 	
 	printf("\nPasame el numero de particulas ameo\n");
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
 
-	FILE* fp;
+	FILE* fp, *fp1;
 	int N_frames;
 	
 	printf("\nPasame la cantidad de frames que queres\n");
@@ -85,6 +85,7 @@ int main(int argc, char *argv[]){
 // Asignacion de velocidades	
 
 	fp = fopen("EPot_ECin_Lambda_H.txt","w");
+	fp1 = fopen("velocidades.txt","w");
 	for(int l = 0; l < N_frames; l++)
 	{	
 		// Sumo todas las velocidades, la reinicio primero
@@ -98,14 +99,23 @@ int main(int argc, char *argv[]){
 		
 		lambda = Verlet_coef(x,L,N);
 		
-		H = h_Boltzmann(v, y, T, h, N);
+		m = 10; // cantidad de columnas en el histograma de velocidades para H_boltzmann
+		H = h_Boltzmann(v, y, T, h, N,m); 
 		
 		fprintf(fp,"%i\t%lf\t%lf\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N), lambda, H);
+		
+		fprintf(fp1,"%i\t",l);
+		for(i=0;i<3*N;i++)
+		{
+		  fprintf(fp1,"%lf ",v[i]);
+		}
+		fprintf(fp1,"\n");
 		
 		printf("Frame: %i\t \n",l);
 		save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 	}
 	fclose(fp);
+	fclose(fp1);
 	
 	free(x);
 	free(v);

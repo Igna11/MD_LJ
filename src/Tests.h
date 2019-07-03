@@ -11,5 +11,7 @@ double TEST_pair_force();
 double TEST_forces();
 double TEST_find_minimum();
 double TEST_histograma();
+double TEST_set_v();
+double TEST_v_paso();
 
 #endif
