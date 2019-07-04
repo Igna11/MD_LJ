@@ -89,3 +89,15 @@ double h_Boltzmann(double* v, double* y, double T, double h, int N, int m)
 	}
 	return H/3;
 }
+
+double Reescalar(double* v, double T, double Td, int N)
+{
+	int i;
+	double a = sqrt(Td/T);
+	
+	for(i = 0; i < 3*N; i++)
+	{
+		v[i] = a*v[i];
+	}
+	return 0;
+}
