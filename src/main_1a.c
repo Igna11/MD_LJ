@@ -66,7 +66,7 @@ int main(int argc, char *argv[]){
 //----------------------------------------------------------------------------------------------//
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
-	sprintf(filename, "prueba_nyp.lammpstrj");
+	sprintf(filename, "prueba_nyp.lammpstrj_1a");
 
 	FILE* fp, *fp1;
 	int N_frames;
