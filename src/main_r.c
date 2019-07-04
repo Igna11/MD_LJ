@@ -80,7 +80,6 @@ int main(int argc, char *argv[]){
 	t = T;
 	while(t > Td)
 	{
-		
 		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 		if(l%200 == 0)
 		{
@@ -92,20 +91,20 @@ int main(int argc, char *argv[]){
 			//calculo el T medido
 			T = vel/(3.0*N);
 			
-			t -= 0.001;
+			t -= 0.01;
 			Reescalar(v, T, t, N);
 			save_lammpstrj(filename, x, v, N, L, l);
 		}
 		l++;
-		printf("Iteracion %i\tT = %lf\tTd = %lf\n", l, T, t);
+		printf("Iteracion %i\tT_med = %lf\tTd = %lf\n", l, T, t);
 		
 	}
 	int m = l;
-	for(m = l; m < 2*l; m++)
+	for(m = l; m < l+2000; m++)
 	{
 		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 		save_lammpstrj(filename, x, v, N, L, m);
-		printf("\nIteracion de termalizacion i = %i\n", m);
+		printf("Iteracion de termalizacion i = %i\n", m);
 	}
 	free(x);
 	free(v);
