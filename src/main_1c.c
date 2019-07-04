@@ -17,18 +17,33 @@ int main(int argc, char *argv[]){
 	
 
 //------------------ MAIN DE EJEMPLO PARA VISUALIZAR CON VMD ------------------//
-	int N, i;
+	int N, i, N_frames, It_termalizacion, It_correlacion, m = 0;
+
 	double L, Ti, Tf, T, rho, h, E_pot, E_potN, vel, E_cinN;
 	
 	printf("\nPasame el numero de particulas ameo\n");
 	scanf("%int", &N);
+	
 	printf("\nPasame la temperatura inicial\n");
 	scanf("%lf", &Ti);
+	
 	printf("\nPasame la temperatura final\n");
 	scanf("%lf", &Tf);
+	
 	printf("\nPasame la densidad de particulas\n");
 	scanf("%lf", &rho);
 	
+	printf("\nPasame la cantidad de frames que queres\n");
+	scanf("%i", &N_frames);
+	
+	printf("\nPasame la cantidad de iteraciones necesaria para que termalice\n");
+	scanf("%i", &It_termalizacion);
+	
+	printf("\nPasame la cantidad de iteraciones necesaria para que descorrelacione\n");
+	scanf("%i", &It_correlacion);
+	
+	printf("\nPasame el paso temporal h\n");
+	scanf("%lf", &h);
 //-------------------- CALCULA EL LADO DE LA CAJA (CUBICA) EN FUNCION DE RHO---//
 	
 	L = cbrt(N/rho);
@@ -60,24 +75,13 @@ int main(int argc, char *argv[]){
 	char filename[255];
 	sprintf(filename, "prueba_nyp.lammpstrj");
 
-	int N_frames, It_termalizacion, It_correlacion, m = 0;
-	
-	printf("\nPasame la cantidad de frames que queres\n");
-	scanf("%i", &N_frames);
-	printf("\nPasame la cantidad de iteraciones necesaria para que termalice\n");
-	scanf("%i", &It_termalizacion);
-	printf("\nPasame la cantidad de iteraciones necesaria para que descorrelacione\n");
-	scanf("%i", &It_correlacion);
-	printf("\nPasame el paso temporal h\n");
-	scanf("%lf", &h);
-	
 	// Configuración de posiciones, velocidades y fuerzas iniciales
 	
 	FILE* fp_pot;
 	FILE* fp_cin;
 	
-	fp_pot = fopen("EPot_1c_tau140.txt","w");
-	fp_cin = fopen("Ecin_1c_tau140.txt","w");
+	fp_pot = fopen("EPot_1c_tau120.txt","w");
+	fp_cin = fopen("Ecin_1c_tau120.txt","w");
 	for(T = Ti; T < Tf; T = T + 0.01)
 	{
 		set_x(x, L, N);
@@ -113,6 +117,7 @@ int main(int argc, char *argv[]){
 			
 			printf("T = %lf\tFrame: %i\t \n", T, l);
 			//save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
+			m++;
 		}
 		fprintf(fp_pot, "\n");
 		fprintf(fp_cin, "\n");
