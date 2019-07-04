@@ -21,7 +21,7 @@ la energia en el orden como esta anotado en el nombre del archivo. Los estados q
 
 */
 
-	int N, i, m = 0;
+	int N, i, l, m = 0;
 	double L, T, rho, h, E_pot, vel;
 	
 	printf("\nPasame el numero de particulas ameo\n");
@@ -84,14 +84,10 @@ la energia en el orden como esta anotado en el nombre del archivo. Los estados q
 
 	fp = fopen("EPot_ECin.txt","w");
 
-	for(int l = 0; l < N_frames; l++)
-	{	
+	for(l = 0; l<N_frames; l++)
+	{		
 		// Sumo todas las velocidades, la reinicio primero
 		vel = 0.0;
-		for(i = 0; i < 3*N; i++)
-		{
-			vel += v[i]*v[i];
-		}
 		
 		E_pot = velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 		
@@ -99,11 +95,15 @@ la energia en el orden como esta anotado en el nombre del archivo. Los estados q
 		
 		if(l >= It_termalizacion && m >= It_correlacion)
 		{
+			for(i = 0; i < 3*N; i++)
+			{
+				vel += v[i]*v[i];
+			}
+			
 			fprintf(fp,"%i\t%lf\t%lf\n", l, (double)E_pot/(double)N, vel/(2.0*N));
 			save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 			m = 0;
 		}
-		
 		printf("Frame: %i\t \n",l);
 	}
 	fclose(fp);
