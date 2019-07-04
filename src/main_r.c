@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 
 //------------------  ------------------//
 	int N, i;
-	double L, rho, h;
+	double L, rho, h, vel;
 	double t, T, Td;
 
 	printf("\nPasame el numero de particulas ameo\n");
@@ -80,19 +80,33 @@ int main(int argc, char *argv[]){
 	t = T;
 	while(t > Td)
 	{
-		l++;
+		
 		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
 		if(l%200 == 0)
 		{
-			t -= 0.01;
+			vel = 0;
+			for(i = 0; i < 3*N; i++)
+			{
+				vel += v[i]*v[i];
+			}
+			//calculo el T medido
+			T = vel/(3.0*N);
+			
+			t -= 0.001;
 			Reescalar(v, T, t, N);
 			save_lammpstrj(filename, x, v, N, L, l);
 		}
-		
+		l++;
 		printf("Iteracion %i\tT = %lf\tTd = %lf\n", l, T, t);
 		
 	}
-	
+	int m = l;
+	for(m = l; m < 2*l; m++)
+	{
+		velocity_verlet(x, v, dx_vector, f, F_mod, h, L, N);
+		save_lammpstrj(filename, x, v, N, L, m);
+		printf("\nIteracion de termalizacion i = %i\n", m);
+	}
 	free(x);
 	free(v);
 	free(f);
