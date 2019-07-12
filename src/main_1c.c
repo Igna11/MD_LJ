@@ -115,10 +115,10 @@ int main(int argc, char *argv[]){
 				m = 0;
 			}
 			
-			printf("T = %lf\tFrame: %i\t \n", T, l);
 			//save_lammpstrj(filename, x, v, N, L, l);  // La guardo (append para 0<l)
 			m++;
 		}
+		printf("T = %lf\n", T);
 		fprintf(fp_pot, "\n");
 		fprintf(fp_cin, "\n");
 	}
