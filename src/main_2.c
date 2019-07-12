@@ -88,7 +88,7 @@ int main(int argc, char *argv[]){
 	FILE* fp_cin;
 	FILE* fp_p;
 	
-	for(rho = rho_i; rho < rho_f; rho = rho + 0.1)
+	for(rho = rho_i; rho < rho_f; rho = rho + 0.2)
 	{
 	//-------------------- CALCULA EL LADO DE LA CAJA (CUBICA) EN FUNCION DE RHO---//
 	
