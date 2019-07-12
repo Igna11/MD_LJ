@@ -57,22 +57,7 @@ int main(int argc, char *argv[]){
 	double *F_mod = (double *) malloc(sizeof(double)); //puntero con el módulo de la fuerza, se va reescribiendo all the time
 	double *P = (double *) malloc(sizeof(double)); //puntero con el módulo de la presion, se va reescribiendo all the time
 
-//------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
 
-	for(i = 0; i < 3*N; i++)
-	{
-		x[i] = 0.0;
-		v[i] = 0.0;
-		f[i] = 0.0;
-	}
-
-	for(i = 0; i < 3; i++)
-	{
-		dx_vector[i] = 0;
-	}
-	F_mod[0] = 0.0;
-	P[0] = 0.0;
-	t = Tf;
 //----------------------------------------------------------------------------------------------//
 // El formato del filename ".lammpstrj", ese VMD lo lee comodamente
 	char filename[255];
@@ -94,6 +79,23 @@ int main(int argc, char *argv[]){
 	
 		L = cbrt(N/rho);
 		Vol = L*L*L;
+		
+		//------------------ REINICIAMOS x, v, f, dx_vector y F_mod ----------------------------------------//
+
+		for(i = 0; i < 3*N; i++)
+		{
+			x[i] = 0.0;
+			v[i] = 0.0;
+			f[i] = 0.0;
+		}
+
+		for(i = 0; i < 3; i++)
+		{
+			dx_vector[i] = 0;
+		}
+		F_mod[0] = 0.0;
+		P[0] = 0.0;
+		t = Tf;
 		
 		sprintf(filename1, "Epot_vs_T_rho%lf.txt", rho);
 		sprintf(filename2, "Ecin_vs_T_rho%lf.txt", rho);
