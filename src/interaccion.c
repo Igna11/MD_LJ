@@ -60,3 +60,46 @@ double forces(double* dx_vector, double* F_mod, double* f, double* x, double L, 
 	}
 	return V;
 }
+
+double forces_con_presion(double* dx_vector, double* F_mod, double* f, double* x, double* P, double L, int N)
+{
+	int i, j, k;
+	double r2, V;
+	double rc2 = 2.5*2.5; //el radio de corte standar al cuadrado (definido así)
+	//RESETEA f
+	for(i = 0; i < 3*N; i++)
+	{
+		f[i] = 0;
+	}
+	
+	V = 0;
+	for(i = 0; i < (N - 1);  i++)
+	{
+		for(j = i + 1; j < N; j++)
+		{
+			//Calcula el módulo de la fuerza de a pares, para la partícula i con todas las partículas j
+			delta_x((x+3*i), (x+3*j), dx_vector, L);			
+			r2 = norma2(dx_vector);
+			
+			if(r2 < rc2) 
+			{
+				V += pair_force(F_mod, r2);
+				
+				P[0] += F_mod[0]*r2;
+				
+				//Calcula la dirección de la fuerza resultante de i con todas las partículas j
+				for(k = 0; k < 3; k++)
+				{
+					f[3*i+k] += F_mod[0]*dx_vector[k];
+					f[3*j+k] -= F_mod[0]*dx_vector[k];
+				}
+				
+			}
+			
+			// Reinicio F_mod 
+			// F_mod[0] = 0.0; 
+		}
+	}
+	return V;
+}
+

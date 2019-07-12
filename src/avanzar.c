@@ -13,6 +13,13 @@ double velocity_verlet(double* x, double* v, double* dx_vector, double* f, doubl
 	// f es el vector que genera forces afuera de esta funcion y que le damos como dato
 	int i;
 	double V;
+	double *v_mediopaso = (double *) malloc(3*N*sizeof(double)); 
+	
+	for(i = 0; i < 3*N; i++)
+	{
+		v_mediopaso[i] = 0.0;
+	}
+
 	for(i = 0; i<3*N; i++)
 	{
 		x[i] = x[i] + v[i]*h + 0.5*f[i]*h*h; // Esto quisiera ser x(t+h) - Se actualizan posiciones en un paso entero
@@ -27,17 +34,65 @@ double velocity_verlet(double* x, double* v, double* dx_vector, double* f, doubl
 			x[i] = x[i]+L;
 		}
 		
-		v[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h/2). - Se actualiza en medio paso la velocidad
+		v_mediopaso[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h/2). - Se actualiza en medio paso la velocidad
 	}
 	
 	// Con las nuevas posiciones se calculan las nuevas fuerzas
 	V = forces(dx_vector, F_mod, f, x, L, N); // Esto define f(t+h)
+	
 
 	// Con las nuevas fuerzas calculo el medio paso que faltaba para terminar de actualizar las velocidades
 	for(i = 0; i<3*N; i++)
 	{
-		v[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h)
+		v[i] = v_mediopaso[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h)
 	}
+	
+	free(v_mediopaso);
+	
+	return V;
+}
+
+double velocity_verlet_con_P(double* x, double* v, double* dx_vector, double* f, double* F_mod, double* P, double h, double L, int N)
+{
+	// f es el vector que genera forces afuera de esta funcion y que le damos como dato
+	int i;
+	double V;
+	double *v_mediopaso = (double *) malloc(3*N*sizeof(double)); 
+	
+	for(i = 0; i < 3*N; i++)
+	{
+		v_mediopaso[i] = 0.0;
+	}
+
+	for(i = 0; i<3*N; i++)
+	{
+		x[i] = x[i] + v[i]*h + 0.5*f[i]*h*h; // Esto quisiera ser x(t+h) - Se actualizan posiciones en un paso entero
+		
+		//Condición periódica de contorno para la posición
+		if(x[i]>L)
+		{
+			x[i] = x[i]-L;
+		}
+		else if(x[i]<0)
+		{
+			x[i] = x[i]+L;
+		}
+		
+		v_mediopaso[i] = v[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h/2). - Se actualiza en medio paso la velocidad
+	}
+	
+	// Con las nuevas posiciones se calculan las nuevas fuerzas
+	
+	V = forces_con_presion(dx_vector, F_mod, f, x, P,  L, N);
+
+	// Con las nuevas fuerzas calculo el medio paso que faltaba para terminar de actualizar las velocidades
+	for(i = 0; i<3*N; i++)
+	{
+		v[i] = v_mediopaso[i] + 0.5*f[i]*h; // Esto quisiera ser v(t+h)
+	}
+	
+	free(v_mediopaso);
+	
 	return V;
 }
 
@@ -100,4 +155,9 @@ double Reescalar(double* v, double T, double Td, int N)
 		v[i] = a*v[i];
 	}
 	return 0;
+}
+
+double Presion(double Pex, double Ecin, double Vol)
+{
+  return (1/(3*Vol))*(Pex+2*Ecin); // La presion de exceso + la P ideal
 }
